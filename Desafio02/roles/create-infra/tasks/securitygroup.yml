@@ -1,0 +1,42 @@
+- name: CREATE SECURITY GROUP NEWAPP
+  amazon.aws.ec2_group:
+    name: "{{ sg_name }}"
+    description: sg provision with ansible playbook
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    rules:
+      - proto: tcp
+        ports:
+        - 80
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 80 HTTP
+      - proto: tcp
+        ports:
+        - 22
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 22 SSH
+    rules_egress:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+  register: sg_instance
+  
+- name: CREATE SECURITY GROUP NEWAPP-DB
+  amazon.aws.ec2_group:
+    name: "{{ sg_newapp_db }}"
+    description: sg provision with ansible playbook RDS
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    rules:
+      - proto: tcp
+        ports:
+        - 3306
+        group_id: "{{ sg_instance.group_id }}"
+        rule_desc: allow all on port 3306 MYSQL
+      - proto: tcp
+        ports:
+        - 3306
+        cidr_ip: 189.100.141.16/32
+        rule_desc: Myip/House
+  register: sg_rds

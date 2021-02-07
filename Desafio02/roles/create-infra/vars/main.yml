@@ -1,0 +1,29 @@
+---
+# vars file for create-infra
+
+###################################
+# Var config Ec2
+###################################
+instance_type: t3.medium
+image: ami-0affd4508a5d2481b
+keypair: ansibletest
+region: us-east-1
+count: 1
+tag_owner: diego.nicacio
+tag_team: pulmao
+
+
+##################################
+# Var config Security-Group Ec2
+##################################
+sg_name: newapp
+vpc_id: vpc-57fd652d
+subnet_id: subnet-ca5a16ad
+
+##################################
+# Var config RDS
+##################################
+sg_newapp_db: newapp_db
+instance_db_name: new-appdb
+instance_db_user: mysql_admin
+instance_db_pass: H4ck3r123

@@ -1,0 +1,16 @@
+---
+- name: Install package essentials
+  yum:
+    name:
+      - wget
+      - zip
+      - unzip
+      - vim
+      - net-tools
+    state: present
+
+
+#- name: Update all packages
+#  yum:
+#    name: '*'
+#    state: latest

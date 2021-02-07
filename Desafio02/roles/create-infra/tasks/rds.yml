@@ -1,0 +1,24 @@
+- name: PROVISIONING DATABASE RDS-MYSQL
+  community.aws.rds:
+    command: create
+    instance_name: "{{ instance_db_name }}"
+    db_engine: MySQL
+    engine_version: "5.6.49"
+    size: 10
+    region: "{{ region }}"
+    instance_type: db.t2.micro
+    username: "{{ instance_db_user }}"
+    password: "{{ instance_db_pass }}"
+    tags:
+      owner: "{{ tag_owner }}"
+      team: "{{ tag_team }}"    
+    wait: yes
+    wait_timeout: 600
+    db_name: "wordpress"
+  register: rds
+
+- debug:
+    msg: "endpoint --> {{ rds.instance.endpoint }}  databse: {{ rds.instance.db_name }} "
+
+  
+

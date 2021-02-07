@@ -1,0 +1,5 @@
+---
+# tasks file for create-infra
+- include: securitygroup.yml
+#- include: rds.yml
+- include: ec2.yml
