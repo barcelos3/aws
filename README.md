@@ -1,6 +1,6 @@
-# Desafios Mandic
+# Desafios Devops
 
-Desafios Mandic - Diego Comitre
+Desafios Devops - Diego Comitre
 
 # Projeto de Aceleração #
 
